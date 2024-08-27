@@ -1,0 +1,88 @@
+<ul
+  class="flex flex-wrap mb-4 text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
+  <li class="me-2">
+    <a aria-current="page" (click)="display = 'table'" [ngClass]="{'text-blue-600 bg-gray-100': display === 'table'}"
+      class="inline-block p-4 cursor-pointer rounded-t-lg active dark:bg-gray-800 dark:text-blue-500">Table View </a>
+  </li>
+  <li class="me-2">
+    <a (click)="display = 'map'" [ngClass]="{'text-blue-600 bg-gray-100': display === 'map'}"
+      class="inline-block p-4 rounded-t-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Map
+      View</a>
+  </li>
+</ul>
+
+<!-- table view -->
+@if (display === 'table') {
+<div
+  class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+
+  <div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-3">
+            Name
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Phone Number
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Email
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Address
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Longitude
+          </th>
+          <th scope="col" class="px-6 py-3">
+            latitude
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (contact of updatedContacts(); track $index) {
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            {{contact.name}}
+          </td>
+          <td class="px-6 py-4">
+          {{contact.phoneNumber}}
+          </td>
+          <td class="px-6 py-4">
+          {{contact.email}}
+          </td>
+          <td class="px-6 py-4">
+          {{contact.addresses}}
+          </td>
+          <td class="px-6 py-4">
+          {{contact.longitude}}
+          </td>
+          <td class="px-6 py-4">
+          {{contact.latitude}}
+          </td>
+
+
+        </tr>
+}
+      </tbody>
+    </table>
+  </div>
+
+
+</div>
+}
+
+
+
+
+<!-- map view -->
+@if (display === 'map') {
+<div
+  class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+  This is the map view
+</div>
+
+}

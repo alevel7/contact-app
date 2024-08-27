@@ -1,0 +1,60 @@
+<form class="lg:w-1/2 lg:mx-auto" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  <h4 class="text-xl font-semibold mb-5">Add a new Contact</h4>
+  <div class="grid gap-6 mb-6 md:grid-cols-2">
+    <div>
+      <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+      <input type="text" id="name" formControlName="name"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="John" required />
+    </div>
+    <div>
+      <label for="phoneNumber" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number</label>
+      <input type="tel" id="phoneNumber" formControlName="phoneNumber"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="08056965067" required />
+    </div>
+    <div class="col-span-2">
+      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+      <input type="email" id="email" formControlName="email"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="test@gmail.com" required />
+    </div>
+    <ng-container formArrayName="addresses">
+      @for (addr of addresses.controls; track $index; let i=$index) {
+      <div class="col-span-2">
+        <label [for]="i" class="mb-2 text-sm font-medium text-gray-900 dark:text-white flex w-full justify-between">
+          <span>Address {{i + 1}}</span>
+          @if (i > 0) {
+            <button (click)="deleteAddr(i)" type="button"
+              class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-sm text-sm w-full sm:w-auto px-1 py-.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">remove</button>
+          }@else {
+            <button (click)="addNewAddress()" type="button"
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm w-full sm:w-auto px-1 py-.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</button>
+          }
+        </label>
+        <input type="text" [id]="i"  [formControlName]="i"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Enter an address" />
+      </div>
+      }
+
+    </ng-container>
+
+    <div>
+      <label for="longitude" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Longitude</label>
+      <input type="text" id="longitude" formControlName="longitude"
+        class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="flowbite.com" required />
+    </div>
+    <div>
+      <label for="latitude" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Latitude</label>
+      <input type="text" id="latitude" formControlName="latitude"
+        class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="flowbite.com" required />
+    </div>
+    <div>
+      <button type="submit" [disabled]="contactForm.invalid"
+        class="text-white bg-blue-700 disabled:bg-blue-300 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+    </div>
+  </div>
+</form>
