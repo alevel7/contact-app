@@ -26,10 +26,10 @@
           <span>Address {{i + 1}}</span>
           @if (i > 0) {
             <button (click)="deleteAddr(i)" type="button"
-              class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-sm text-sm w-full sm:w-auto px-1 py-.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">remove</button>
+              class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-sm text-sm sm:w-auto px-1 py-.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">remove</button>
           }@else {
             <button (click)="addNewAddress()" type="button"
-              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm w-full sm:w-auto px-1 py-.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</button>
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm sm:w-auto px-1 py-.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</button>
           }
         </label>
         <input type="text" [id]="i"  [formControlName]="i"  [ngClass]="this.addresses.at(i).touched && this.addresses.at(i).errors ? 'border-red-500' : 'border-gray-300'"
