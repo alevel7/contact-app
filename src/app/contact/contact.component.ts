@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { Router } from '@angular/router';
@@ -16,7 +16,8 @@ export class ContactComponent implements OnInit {
   formBuilder = inject(FormBuilder)
   dbService = inject(NgxIndexedDBService)
   router = inject(Router);
-  destroyRef = inject(DestroyRef)
+  destroyRef = inject(DestroyRef);
+  isLoading = signal(false);
 
   contactForm = this.formBuilder.group({
     name: ['', Validators.required],
@@ -68,10 +69,14 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit() {
-    this.dbService.add('Contacts', this.contactForm.getRawValue())
-    .pipe(takeUntilDestroyed(this.destroyRef))
-    .subscribe(() => {
-      this.router.navigateByUrl('/');
-    })
+    this.isLoading.set(true)
+    setTimeout(() => {
+      this.dbService.add('Contacts', this.contactForm.getRawValue())
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe(() => {
+          this.isLoading.set(false)
+          this.router.navigateByUrl('/');
+        })
+    }, 1500);
   }
 }
