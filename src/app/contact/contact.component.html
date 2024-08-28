@@ -3,20 +3,20 @@
   <div class="grid gap-6 mb-6 md:grid-cols-2">
     <div>
       <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-      <input type="text" id="name" formControlName="name"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="John" required />
+      <input type="text" id="name" formControlName="name" [ngClass]="this.contactForm.get('name')?.touched && this.contactForm.get('name')?.errors ? 'border-red-500' : 'border-gray-300'"
+        class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="John" />
     </div>
     <div>
       <label for="phoneNumber" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number</label>
-      <input type="tel" id="phoneNumber" formControlName="phoneNumber"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="08056965067" required />
+      <input type="tel" id="phoneNumber" formControlName="phoneNumber"  [ngClass]="this.contactForm.get('phoneNumber')?.touched && this.contactForm.get('phoneNumber')?.errors ? 'border-red-500' : 'border-gray-300'"
+        class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="08056965067" />
     </div>
     <div class="col-span-2">
       <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-      <input type="email" id="email" formControlName="email"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      <input type="email" id="email" formControlName="email"  [ngClass]="this.contactForm.get('email')?.touched && this.contactForm.get('email')?.errors ? 'border-red-500' : 'border-gray-300'"
+        class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         placeholder="test@gmail.com" required />
     </div>
     <ng-container formArrayName="addresses">
@@ -32,7 +32,7 @@
               class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm w-full sm:w-auto px-1 py-.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</button>
           }
         </label>
-        <input type="text" [id]="i"  [formControlName]="i"
+        <input type="text" [id]="i"  [formControlName]="i"  [ngClass]="this.addresses.at(i).touched && this.addresses.at(i).errors ? 'border-red-500' : 'border-gray-300'"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Enter an address" />
       </div>
@@ -44,13 +44,13 @@
       <label for="longitude" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Longitude</label>
       <input type="text" id="longitude" formControlName="longitude"
         class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="flowbite.com" required />
+        placeholder="flowbite.com" />
     </div>
     <div>
       <label for="latitude" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Latitude</label>
       <input type="text" id="latitude" formControlName="latitude"
         class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="flowbite.com" required />
+        placeholder="flowbite.com" />
     </div>
     <div>
       <button type="submit" [disabled]="contactForm.invalid"

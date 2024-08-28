@@ -30,6 +30,9 @@ export class ContactComponent implements OnInit {
   ngOnInit(): void {
     this.addNewAddress();
     this.getLocation();
+
+    this.contactForm.controls.latitude.disable()
+    this.contactForm.controls.longitude.disable()
   }
 
   get addresses() {
@@ -65,7 +68,7 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit() {
-    this.dbService.add('Contacts', this.contactForm.value)
+    this.dbService.add('Contacts', this.contactForm.getRawValue())
     .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe(() => {
       this.router.navigateByUrl('/');
